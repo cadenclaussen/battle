@@ -1,6 +1,7 @@
 from Guardian import *
 from Lynel import *
 from Ganon import *
+from Link import *
 
 options = {
     "Gold Lynel 1": GoldLynel("Gold Lynel 1"),
@@ -10,7 +11,8 @@ options = {
     "Silver Lynel 3": SilverLynel("Silver Lynel 3"),
     "Guardian 1": Guardian("Guardian 1"),
     "Guardian 2": Guardian("Guardian 2"),
-    "Ganon": Ganon("Ganon")
+    "Ganon": Ganon("Ganon"),
+    "Link": Link("Link")
 }
 
 def prompt(prefix, error, options):

@@ -1,7 +1,7 @@
 from Mob import *
 import random
 
-class Link(Mob)
+class Link(Mob):
     def __init__(self, name):
         super().__init__(name, 5000, 95)
         self.attacks["spin"] = self.spin_attack
