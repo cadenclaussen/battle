@@ -5,11 +5,11 @@ class Guardian(Mob):
 
     def __init__(self, name):
         super().__init__(name, random.randint(9000, 10000), 50)
-        self.attacks["swirl attack"] = self.swirl_attack
-        self.attacks["jump attack"] = self.jump_attack
+        self.attacks["swirl"] = self.swirl_attack
+        self.attacks["jump"] = self.jump_attack
 
     def swirl_attack(self, target):
-        super().attack("swirl attack", target, random.randint(100, 400))
+        super().attack("swirl", target, random.randint(100, 400))
 
     def jump_attack(self, target):
-        super().attack("jump attack", target, random.randint(500, 750))
+        super().attack("jump", target, random.randint(500, 750))
