@@ -1,7 +1,3 @@
-# Turn based healing via chance
-# Turn based attack via chance
-# Randomize number of players on each side?
-# On each turn, randomize which player attacks first, second, ...
 from Guardian import *
 from Lynel import *
 from Ganon import *
@@ -44,39 +40,56 @@ def prompt(prefix, error, options):
 
     return option_numbers[number]
 
-def user_move(user, target):
-    move_key = prompt("Choose a move", "Try again, that is not a valid move.", user.moves.keys())
+def chance(percent):
+    if (random.randint(0, 100) > (100 - percent)):
+        return True
+    return False
+
+def battle():
+    # Prompt the player for which player they want to use
+    user_key = prompt("Choose a player", "Try again, that is not a valid player.", options)
+    user = options[user_key]
+    options.pop(user_key)
+
+    # Randomly pick a bot from the remaining characters
+    bot = random.choice(list(options.values()))
+
     print()
-    user.moves[move_key](target)
+    while True:
+        print()
+        print("-" * 40)
+        print("Battle: " + str(user) + " (you) vs. " + str(bot))
 
-def bot_move(bot, target):
-    move = random.choice(list(bot.moves.values()))
-    move(target)
+        print()
+        attack_key = prompt("Choose an attack", "Try again, that is not a valid attack.", user.attacks.keys())
+        print()
+        user.attacks[attack_key](bot)
+        if bot.health <= 0:
+            break
+
+        attack_function = random.choice(list(bot.attacks.values()))
+        attack_function(user)
+        if user.health <= 0:
+            break
+
+        print("Result: " + str(user) + " (you) vs. " + str(bot))
+
+        print()
+        if (chance(50)):
+            user.heal()
+        if (chance(80)):
+            bot.heal()
+
+        print("Result: " + str(user) + " (you) vs. " + str(bot))
+
+
     print()
-
-user_key = prompt("Choose a player", "Try again, that is not a valid player.", options)
-user = options[user_key]
-options.pop(user_key)
-
-bot = random.choice(list(options.values()))
-
-print()
-
-while True:
     print("-" * 40)
-    print("Battle: " + str(user) + " (you) vs. " + str(bot))
-    print()
-    user_move(user, bot)
-    if bot.health <= 0:
-        break
-
-    bot_move(bot, user)
     if user.health <= 0:
-        break
+        print("You lose!")
+    else:
+        print("You win!")
 
-print()
-print("-" * 40)
-if user.health <= 0:
-    print("You lose!")
-else:
-    print("You win!")
+
+
+battle()

@@ -7,10 +7,10 @@ class Lynel(Mob):
 
     def __init__(self, name, health, heal_multiplier):
         super().__init__(name, health, heal_multiplier)
-        self.moves["spear charge"] = self.spear_charge
-        self.moves["fire slam"] = self.fire_slam
-        self.moves["breath fire"] = self.spear_charge
-        self.moves["stamp"] = self.fire_slam
+        self.attacks["spear charge"] = self.spear_charge
+        self.attacks["fire slam"] = self.fire_slam
+        self.attacks["breath fire"] = self.spear_charge
+        self.attacks["stamp"] = self.fire_slam
 
 
 
