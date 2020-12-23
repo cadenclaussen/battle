@@ -48,6 +48,7 @@ def chance(percent):
     return False
 
 def battle():
+
     # Prompt the player for which player they want to use
     user_key = prompt("Choose a player", "Try again, that is not a valid player.", options)
     user = options[user_key]
@@ -83,7 +84,6 @@ def battle():
             bot.heal()
 
         print("Result: " + str(user) + " (you) vs. " + str(bot))
-
 
     print()
     print("-" * 40)
