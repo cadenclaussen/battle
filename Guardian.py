@@ -1,8 +1,6 @@
 from Mob import *
 import random
 
-
-
 class Guardian(Mob):
 
     def __init__(self, name):

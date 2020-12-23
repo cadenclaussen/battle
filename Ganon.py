@@ -1,8 +1,6 @@
 from Mob import *
 import random
 
-
-
 class Ganon(Mob):
 
     def __init__(self, name):

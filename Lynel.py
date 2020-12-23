@@ -1,8 +1,6 @@
 from Mob import *
 import random
 
-
-
 class Lynel(Mob):
 
     def __init__(self, name, health, heal_multiplier):
@@ -11,8 +9,6 @@ class Lynel(Mob):
         self.attacks["fire slam"] = self.fire_slam
         self.attacks["breath fire"] = self.spear_charge
         self.attacks["stamp"] = self.fire_slam
-
-
 
 class GoldLynel(Lynel):
 
@@ -30,8 +26,6 @@ class GoldLynel(Lynel):
 
     def stamp(self, target):
         super().attack("stamp", target, random.randint(500, 750))
-
-
 
 class SilverLynel(Lynel):
 

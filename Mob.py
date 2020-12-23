@@ -1,7 +1,5 @@
 import random
 
-
-
 class Mob():
     name = ""
     health = 0
