@@ -1,6 +1,10 @@
 # Add in multiple bot mobs
 # Randomize who attacks first vs second
 # Randomize who heals first vs second
+# Add command line options for:
+# - random vs random, random vs prompt, prompt vs random, or prompt vs prompt
+# - -u -b
+# Command line option for "must be different" characters battling (use pop)
 from Guardian import *
 from Lynel import *
 from Ganon import *
@@ -21,29 +25,30 @@ def battle():
     }
 
     # Prompt for (or randomly select) the user
-    # user_key = prompt("Select a player", "Try again, that is not a valid option.", characters)
-    # user = characters[user_key]
-    user = random.choice(list(characters.values()))
+    user_key = prompt("Select a player", "Try again, that is not a valid option.", characters)
+    user = characters[user_key]
+    # user = random.choice(list(characters.values()))
     # characters.pop(user_key)
 
     # Prompt for (or randomly select) the bot
-    # bot_key = prompt("Select a bot", "Try again, that is not a valid option.", characters)
-    # bot = characters[bot_key]
-    bot = random.choice(list(characters.values()))
+    bot_key = prompt("Select a bot", "Try again, that is not a valid option.", characters)
+    bot = characters[bot_key]
+    # bot = random.choice(list(characters.values()))
 
     print("Battle: " + str(user) + " (you) vs. " + str(bot))
     while True:
         print("-" * 40)
 
-        # attack_key = prompt("Choose an attack", "Try again, that is not a valid attack.", user.attacks.keys())
         if (chance(50)):
-            attack_key = random.choice(list(user.attacks.keys()))
+            attack_key = prompt("Choose an attack", "Try again, that is not a valid attack.", user.attacks.keys())
+            # attack_key = random.choice(list(user.attacks.keys()))
             user.attacks[attack_key](bot)
             if bot.health <= 0:
                 print(bot.name + ' died.')
                 break
 
         if (chance(50)):
+            # attack_key = prompt("Choose an attack", "Try again, that is not a valid attack.", user.attacks.keys())
             attack_function = random.choice(list(bot.attacks.values()))
             attack_function(user)
             if user.health <= 0:
