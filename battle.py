@@ -28,12 +28,12 @@ def battle():
     user_key = prompt("Select a player", "Try again, that is not a valid option.", characters)
     user = characters[user_key]
     # user = random.choice(list(characters.values()))
-    # characters.pop(user_key)
+    characters.pop(user_key)
 
     # Prompt for (or randomly select) the bot
-    bot_key = prompt("Select a bot", "Try again, that is not a valid option.", characters)
-    bot = characters[bot_key]
-    # bot = random.choice(list(characters.values()))
+    # bot_key = prompt("Select a bot", "Try again, that is not a valid option.", characters)
+    # bot = characters[bot_key]
+    bot = random.choice(list(characters.values()))
 
     print("Battle: " + str(user) + " (you) vs. " + str(bot))
     while True:
@@ -54,12 +54,6 @@ def battle():
             if user.health <= 0:
                 print(user.name + ' died.')
                 break
-
-        if (chance(40)):
-            user.heal()
-
-        if (chance(40)):
-            bot.heal()
 
     print("-" * 40)
     if user.health <= 0:
